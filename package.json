@@ -6,7 +6,7 @@
   "scripts": {
   "clean": "rimraf node_modules dist",
   "build": "tsc",
-  "start": "npm run seed && node ./dist/index.js",
+  "start": "prisma migrate deploy && npm run seed && node ./dist/index.js",
   "dev": "ts-node-dev ./src/index.ts",
   "seed": "ts-node ./prisma/seed.ts", 
   "test": "echo \"Error: no test specified\" && exit 1"
