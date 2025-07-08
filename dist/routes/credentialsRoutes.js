@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const schema_middleware_1 = require("../middlewares/schema-middleware");
+const credentials_schemas_1 = require("../schemas/credentials-schemas");
+const auth_middleware_1 = require("../middlewares/auth-middleware");
+const credential_controllers_1 = require("../controllers/credential-controllers");
+const credentialsRouter = (0, express_1.Router)();
+credentialsRouter.post("/credentials", auth_middleware_1.authenticateToken, (0, schema_middleware_1.validateSchema)(credentials_schemas_1.postCredentialsSchema), credential_controllers_1.postCredentials);
+credentialsRouter.get("/credentials", auth_middleware_1.authenticateToken, credential_controllers_1.getCredentials);
+credentialsRouter.put("/credentials/:id", auth_middleware_1.authenticateToken, (0, schema_middleware_1.validateSchema)(credentials_schemas_1.postCredentialsSchema), credential_controllers_1.putCredentials);
+credentialsRouter.delete("/credentials/:id", auth_middleware_1.authenticateToken, credential_controllers_1.deleteCredential);
+exports.default = credentialsRouter;
